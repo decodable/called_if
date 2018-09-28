@@ -10,6 +10,7 @@ string get_string(const CXString &s) {
 }
 
 string get_func_signature(CXCursor c) {
+  // this simple implementation works for C but not C++
   auto name = clang_getCursorSpelling(c);
 
   return get_string(name);

@@ -1,8 +1,8 @@
 #ifndef CALLED_IF_H_
 #define CALLED_IF_H_
 
-#include <clang-c/Index.h>
 #include <boost/log/trivial.hpp>
+#include <clang-c/Index.h>
 #include <iostream>
 #include <string>
 #include <tuple>
@@ -19,11 +19,16 @@ std::string get_func_signature(CXCursor c);
 
 enum CXChildVisitResult match_function_decl(CXCursor c, CXCursor parent,
                                             CXClientData client_data);
+enum CXChildVisitResult match_call_expr(CXCursor c, CXCursor parent,
+                                        CXClientData client_data);
 enum CXChildVisitResult match_if_statement(CXCursor c, CXCursor parent,
                                            CXClientData client_data);
 
 // We want to find out whether the named function is called in any conditional
 // statement.
+//
+// 1. find out all functions which call the named function
+// 2. from function in 1st step, find out all called in conditional
 
 // all functions which call the named function
 using FunctionDeclMatched = std::unordered_set<std::string>;

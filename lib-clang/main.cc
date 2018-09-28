@@ -8,9 +8,6 @@ namespace logging = boost::log;
 using namespace std;
 using namespace codible;
 
-enum CXChildVisitResult visit(CXCursor c, CXCursor parent,
-                              CXClientData client_data);
-
 void init(const string &severity) {
   auto log_severity = logging::trivial::warning;
   if (severity == "trace") {
@@ -86,23 +83,27 @@ void run_match_if_stmt(int count, const char *filenames[], CXIndex index,
   }
 }
 
-int run_clang(const char *func_name, int count, const char *filenames[]) {
+int run_clang(const string &func_name, int count, const char *filenames[]) {
   auto index = get_index();
 
   FunctionDeclMatched func_decl_matched;
   func_decl_matched.insert(func_name);
   run_match_func_decl(count, filenames, index, func_decl_matched);
 
-  cout << "matched functions ..." << endl;
+  cout << "functions calling " << func_name << " [" << func_decl_matched.size()
+       << "]:" << endl;
   dump(func_decl_matched, cout);
 
   FunctionDeclMatched called_if_matched;
-  IfStmtMatched if_stmt_matched(&called_if_matched, &func_decl_matched);
-  run_match_if_stmt(count, filenames, index, if_stmt_matched);
+  if (func_decl_matched.size() != 0) {
+    IfStmtMatched if_stmt_matched(&called_if_matched, &func_decl_matched);
+    run_match_if_stmt(count, filenames, index, if_stmt_matched);
+  }
 
   clang_disposeIndex(index);
 
-  cout << "called if ..." << endl;
+  cout << "functions calling " << func_name << " and called in conditional ["
+       << called_if_matched.size() << "]:" << endl;
   dump(called_if_matched, cout);
 
   return 0;

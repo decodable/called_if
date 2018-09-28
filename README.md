@@ -10,3 +10,17 @@ void foo(bool cond) {
   }
 }
 ```
+
+## libclang
+One implementation uses libclang, which is the C Interface to Clang.
+
+To build:
+```
+git clone git@github.com:decodable/called_if.git
+cd called_if/lib-clang
+mkdir build
+cd build
+cmake ..
+make
+```
+

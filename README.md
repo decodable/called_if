@@ -24,3 +24,6 @@ cmake ..
 make
 ```
 
+## Docker
+Compiled and tested in the docker [clang_dev](https://hub.docker.com/r/codible/clang_dev/).
+

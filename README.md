@@ -23,7 +23,16 @@ cd build
 cmake ..
 make
 ```
-
+## LibTooling
+```
+LibTooling is a library to support writing standalone tools based on Clang.
+```
+To build:
+```
+git clone git@github.com:decodable/called_if.git
+cd called_if/clang-tools/called_if
+docker build .
+```
 ## Docker
 Compiled and tested in the docker [clang_dev](https://hub.docker.com/r/codible/clang_dev/).
 

@@ -36,3 +36,8 @@ docker build .
 ## Docker
 Compiled and tested in the docker [clang_dev](https://hub.docker.com/r/codible/clang_dev/).
 
+## References
+1. [Clang 8 - Choosing the Right Interface for Your Application](https://clang.llvm.org/docs/Tooling.html)
+2. [Baby steps with `libclang`: Walking an abstract syntax tree](http://bastian.rieck.ru/blog/posts/2015/baby_steps_libclang_ast/)
+3. [How to write RecursiveASTVisitor based ASTFrontendActions.](https://clang.llvm.org/docs/RAVFrontendAction.html)
+

@@ -24,9 +24,8 @@ cmake ..
 make
 ```
 ## LibTooling
-```
-LibTooling is a library to support writing standalone tools based on Clang.
-```
+One implementation as a clang tool.
+
 To build:
 ```
 git clone git@github.com:decodable/called_if.git
